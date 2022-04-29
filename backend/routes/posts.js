@@ -8,4 +8,5 @@ router.get('/', getPosts)
 router.get('/:userId', getPostsById);
 
 
+
 module.exports = router;
