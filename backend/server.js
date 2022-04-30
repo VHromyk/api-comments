@@ -6,15 +6,16 @@ const postRouter = require('./routes/posts');
 
 const PORT = 5000;
 
-app.use('/comments', commentRouter);
-
-app.use('/posts', postRouter);
-
 app.use(
     cors({
         origin: '*',
     })
 );
+
+app.use('/comments', commentRouter);
+
+app.use('/posts', postRouter);
+
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`)

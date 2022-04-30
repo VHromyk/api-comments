@@ -11,7 +11,7 @@ const CurrentPost = () => {
      useEffect(() => {
          axios
              .get(`http://localhost:5000/posts/${postId}`)
-             .then((res) => setPost(res.data[0]));
+             .then((res) => setPost(res.data.data));
      }, [postId]);
 
 
