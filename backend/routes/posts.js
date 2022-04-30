@@ -1,12 +1,9 @@
 const express = require('express');
-const { getPosts, getPostsById } = require('../controllers/posts.controller');
+const {getAllPosts, getPostsById} = require('../controllers/posts.controller');
 
 const router = express.Router();
 
-
-router.get('/', getPosts)
-router.get('/:userId', getPostsById);
-
-
+router.get('/', getAllPosts);
+router.get('/:postId', getPostsById);
 
 module.exports = router;

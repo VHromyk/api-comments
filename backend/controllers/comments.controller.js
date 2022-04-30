@@ -1,45 +1,16 @@
-const axios = require('axios');
+const { fetchCommentData } = require('../api/api');
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com';
-
-const fetchCommentData = () => {
-    return axios
-      .get(`${BASE_URL}/comments`)
-      .then((comments) => {
-        return {
-          success: true,
-          data: comments.data,
-      };
-      });
-};
-
-const getComments = async (req, res) => {
-  try {
-    const data = await fetchCommentData();
-        if (!data) {
-            res.status(404).json('Comment was not found!');
-        } else {
-            res.status(200).send(data);
-        }
-  } catch (error) {
-    console.error(error)
-  }
-};
-
-const getCommentsById = async (req, res) => {
-  try {
-    const { postId } = req.params;
-    const result = await fetchCommentData();
-
+const getComments = (req, res) => {
+  fetchCommentData().then((result) => {
     if (!result) {
-        res.status(404).json(`Posts with userId ${postId} were not found!`);
+        res.status(404).json(`Comments were not found!`);
     } else {
-        res.status(200).send(result.data)
+      res.status(200).send({
+        success: true,
+        // data: result.data,
+      });
     }
-
-  } catch (error) {
-    console.error(error)
-  }
+}).catch((error)=> console.log(error.code));
 };
 
-module.exports = { getComments, getCommentsById };
+module.exports = {getComments};

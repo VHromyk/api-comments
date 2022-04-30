@@ -1,35 +1,38 @@
-const axios = require('axios');
+const { fetchPostData, fetchPostDataById } = require('../api/api');
 
-const BASE_URL = 'https://jsonplaceholder.typicode.com';
 
-const fetchPostData = () => {
-  return axios.get(`${BASE_URL}/posts`).then((posts) => {
-      return {
-          success: true,
-          data: posts.data,
-      };
-  });
-}
-
-const getPosts = async (req, res) => {
-  const data = await fetchPostData();
-   if (!data) {
-      res.status(404).json('Posts not found!')
-    } else {
-      res.status(200).send(data);
-    }
-}
-
-const getPostsById = async (req, res) => {
-  const { userId } = req.params;
-
-  const result = await fetchPostData();
-
-    if (!result) {
-        res.status(404).json(`Posts with userId ${userId} were not found!`);
-    } else {
-        res.status(200).send(result.data.filter((el)=> el.userId === Number(userId)));
-    }
+const getAllPosts =  (req, res) => {
+    fetchPostData()
+        .then((result) => {
+            if (!result) {
+                res.status(404).json('Posts not found!');
+            } else {
+                res.status(200).send({
+                    success: true,
+                    data: result.data,
+                });
+            }
+        }).catch((error) => console.log(error.code));
 };
 
-module.exports = { getPosts, getPostsById };
+const getPostsById = (req, res) => {
+  const { postId } = req.params;
+  
+    fetchPostDataById(postId)
+        .then((result) => {
+            if (!result) {
+                res.status(404).json({
+                    success: false,
+                    data: 'Not found',
+                });
+            } else {
+                res.status(200).send({
+                    success: true,
+                    data: result.data,
+                });
+            }
+        }).catch((error) => console.log(error.code));
+
+};
+
+module.exports = {getAllPosts, getPostsById};
