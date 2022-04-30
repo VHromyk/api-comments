@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import PostItem from './PostItem/PostItem.component'
+import PostItem from './PostItem/PostItem'
 
-const Post = () => {
+const AllPosts = () => {
   const [posts, setPosts] = useState([])
 
   async function fetchData() {
@@ -18,6 +18,7 @@ const Post = () => {
 
   return (
     <>
+      <h3>All posts for users</h3>
       <ul className='list'>
       {posts.map(post => (
         <PostItem post={post}></PostItem>
@@ -27,4 +28,4 @@ const Post = () => {
   )
 }
 
-export default Post
+export default AllPosts;
