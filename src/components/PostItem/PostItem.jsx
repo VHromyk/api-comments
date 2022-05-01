@@ -1,10 +1,14 @@
+import { useState } from 'react';
 import styles from './PostItem.module.css'
 import { Link } from 'react-router-dom';
 
 
 
+
+
 const PostItem = ({ post }) => {
-    console.log(post)
+ 
+
     const { id: postId, title, body, userId } = post;
 
     
@@ -17,7 +21,7 @@ const PostItem = ({ post }) => {
                 <span>Post id: {postId}</span>
                 <p className={styles.body}>{body}</p>
             </Link>
-        </li>
+            </li>
     );
 };
 
