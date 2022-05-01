@@ -1,5 +1,4 @@
-const { fetchPostData, fetchPostDataById } = require('../api/api');
-
+const { fetchPostData, fetchPostDataById, getCommentsByPostId } = require('../api/api');
 
 const getAllPosts =  (req, res) => {
     fetchPostData()
@@ -15,8 +14,10 @@ const getAllPosts =  (req, res) => {
         }).catch((error) => console.log(error.code));
 };
 
-const getPostsById = (req, res) => {
-  const { postId } = req.params;
+const getPostsById = async (req, res) => {
+    const { postId } = req.params;
+
+    const comments = await getCommentsByPostId(postId);
   
     fetchPostDataById(postId)
         .then((result) => {
@@ -28,7 +29,10 @@ const getPostsById = (req, res) => {
             } else {
                 res.status(200).send({
                     success: true,
-                    data: result.data,
+                    data: {
+                        ...result.data,
+                        commentslist: comments
+                    },
                 });
             }
         }).catch((error) => console.log(error.code));

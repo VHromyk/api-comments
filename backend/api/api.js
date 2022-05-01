@@ -14,12 +14,10 @@ const fetchPostDataById = async (postId) => {
     return result;
 };
 
+const getCommentsByPostId = (postId) => {
+    return axios
+        .get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+        .then((result) => result.data);
+}
 
-const fetchCommentData = async () => {
-    const data = await axios.get(`${BASE_URL}/comments`)
-
-    return data;
-};
-
-
-module.exports = {fetchPostData, fetchPostDataById, fetchCommentData};
+module.exports = {fetchPostData, fetchPostDataById, getCommentsByPostId };
