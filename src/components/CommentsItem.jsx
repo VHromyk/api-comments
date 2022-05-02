@@ -4,7 +4,7 @@ const CommentsItem = ({ comments }) => {
 
   return (
       <ul>
-          {comments.map((el) => (
+          {comments && comments.map((el) => (
               <li key={el.id} className={styles.comments}>
                   <p>Name: {el.name}</p>
                   <span>Comment id: {el.id}</span>

@@ -21,7 +21,7 @@ const AllPosts = () => {
       <h3>All posts for users</h3>
       <ul className='list'>
       {posts.map(post => (
-        <PostItem post={post}></PostItem>
+        <PostItem key={post.id} post={post}></PostItem>
       ))}
     </ul>
     </>

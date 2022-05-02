@@ -1,19 +1,13 @@
-import { useState } from 'react';
 import styles from './PostItem.module.css'
 import { Link } from 'react-router-dom';
 
 
-
-
-
 const PostItem = ({ post }) => {
  
-
     const { id: postId, title, body, userId } = post;
 
-    
     return (
-        <li key={postId} className={styles.wrapper}>
+        <li className={styles.wrapper}>
             <Link to={`/posts/${postId}`} style={{ textDecoration: 'none' }}>
                 <p>{title}</p>
                 <span>User id: {userId}</span>
