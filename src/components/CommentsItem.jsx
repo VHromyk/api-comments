@@ -6,11 +6,9 @@ const CommentsItem = ({ comments }) => {
       <ul>
           {comments && comments.map((el) => (
               <li key={el.id} className={styles.comments}>
+                  <p>Comment id: {el.id}</p>
                   <p>Name: {el.name}</p>
-                  <span>Comment id: {el.id}</span>
-                  <span>------</span>
-                  <span>Email: {el.email}</span>
-                  <span>Email: {el.name}</span>
+                  <p>Email: {el.email}</p>
                   <p className={styles.body}>{el.body}</p>
               </li>
           ))}

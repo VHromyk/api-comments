@@ -9,10 +9,9 @@ const PostItem = ({ post }) => {
     return (
         <li className={styles.wrapper}>
             <Link to={`/posts/${postId}`} style={{ textDecoration: 'none' }}>
-                <p>{title}</p>
-                <span>User id: {userId}</span>
-                <span>------</span>
-                <span>Post id: {postId}</span>
+                <h2>{title}</h2>
+                <p>User id: {userId}</p>
+                <p>Post id: {postId}</p>
                 <p className={styles.body}>{body}</p>
             </Link>
             </li>

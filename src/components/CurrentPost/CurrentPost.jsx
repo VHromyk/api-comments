@@ -24,7 +24,7 @@ const CurrentPost = () => {
               <h3>Current post</h3>
               {post && (
                   <div>
-                      <p>{post.title}</p>
+                      <h2>{post.title}</h2>
                       <span>User id: {post.userId}</span>
                       <span>------</span>
                       <span>Post id: {post.id}</span>
